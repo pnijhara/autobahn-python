@@ -277,7 +277,7 @@ class ApplicationError(Error):
         """
         return '{0}: {1}'.format(
             self.error,
-            ' '.join([str(a) for a in self.args]),
+            ' '.join(str(a) for a in self.args),
         )
 
     def __unicode__(self):

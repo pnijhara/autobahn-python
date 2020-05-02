@@ -186,9 +186,8 @@ def _create_transport(index, transport, check_native_endpoint=None):
         if 'serializers' in transport:
             if not isinstance(transport['serializers'], (list, tuple)):
                 raise ValueError("'serializers' must be a list of strings")
-            if not all([
-                    isinstance(s, (str, str))
-                    for s in transport['serializers']]):
+            if not all(isinstance(s, (str, str))
+                    for s in transport['serializers']):
                 raise ValueError("'serializers' must be a list of strings")
             valid_serializers = SERID_TO_SER.keys()
             for serial in transport['serializers']:
@@ -196,7 +195,7 @@ def _create_transport(index, transport, check_native_endpoint=None):
                     raise ValueError(
                         "Invalid serializer '{}' (expected one of: {})".format(
                             serial,
-                            ', '.join([repr(s) for s in valid_serializers]),
+                            ', '.join(repr(s) for s in valid_serializers),
                         )
                     )
         serializer_config = transport.get('serializers', ['cbor', 'json'])
